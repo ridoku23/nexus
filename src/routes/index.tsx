@@ -38,7 +38,7 @@ function Index() {
       </section>
 
       <section className="grid gap-4 sm:grid-cols-3">
-        {[[ShieldCheck, "Servicio confiable", "Garantía y atención cercana"], [Truck, "Envíos nacionales", "A todo Colombia"], [CreditCard, "Todos los pagos", "Efectivo, transferencia y Wompi"]].map(([I, t, d]) => {
+        {[[ShieldCheck, "Servicio confiable", "Garantía y atención cercana"], [Truck, "Envíos nacionales", "A todo Colombia"], [CreditCard, "Todos los pagos", "Efectivo, transferencia y tarjeta"]].map(([I, t, d]) => {
           const Icon = I as typeof ShieldCheck;
           return (
             <div key={t as string} className="glow-card flex items-center gap-4 p-5">

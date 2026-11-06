@@ -1,27 +1,26 @@
 # NEXUS Tecnología
 
-Tienda y servicio técnico de computadores: catálogo, carrito con pagos (efectivo y transferencia en sitio; transferencia y tarjeta con Wompi en línea), envíos nacionales, citas, "Arma tu PC", contacto y panel de administración.
+Tienda y servicio técnico de computadores: catálogo, carrito, envíos nacionales, citas, "Arma tu PC", contacto y panel de administración.
 
-Stack: TanStack Start (React 19) · Supabase · Wompi · Tailwind 4 · Nitro.
+**Cómo funcionan los pedidos:** el cliente arma su carrito, llena sus datos y el pedido completo (productos, total, datos de envío y forma de pago) llega al WhatsApp del negocio. El costo del envío y el link de pago (Bold, Wompi u otro) se envían de forma manual por WhatsApp.
+
+Stack: TanStack Start (React 19) · Supabase · Tailwind 4 · Nitro.
 
 ## Despliegue en Vercel
 
-1. Sube este proyecto a GitHub (el repositorio `nexus`).
-2. En Vercel: **Add New → Project** e importa el repositorio. Vercel detecta todo solo (usa `bun.lock`).
-3. En **Settings → Environment Variables** agrega las variables de `.env.example`:
+1. Importa este repositorio en Vercel (**Add New → Project**). Detecta todo solo (usa `bun.lock`).
+2. En **Settings → Environment Variables** agrega las variables de `.env.example` (solo las de Supabase):
 
 | Variable | Para qué sirve |
 | --- | --- |
 | `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`, `VITE_SUPABASE_PROJECT_ID` | Navegador (se incrustan al compilar) |
 | `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_PROJECT_ID` | Servidor / SSR |
-| `SUPABASE_SERVICE_ROLE_KEY` | Servidor: crea pedidos y valida precios. **Secreta** |
-| `WOMPI_PUBLIC_KEY`, `WOMPI_INTEGRITY_SECRET`, `WOMPI_EVENTS_SECRET` | Pagos con Wompi. Secretas |
 
-4. Pulsa **Deploy**. Si cambias una variable `VITE_*`, haz **Redeploy** (se leen al compilar).
-5. En el panel de Wompi, configura la URL de eventos (webhook):
-   `https://TU-DOMINIO.vercel.app/api/public/wompi/webhook`
+3. Pulsa **Deploy**. Si cambias una variable `VITE_*`, haz **Redeploy** (se leen al compilar).
 
 El proyecto fija `nitro: { preset: "vercel" }` en `vite.config.ts`, así `vite build` genera `.vercel/output`. Dentro de Lovable ese ajuste se ignora, por lo que ambos entornos siguen funcionando.
+
+El número de WhatsApp está en `src/lib/shop.tsx` (constante `WHATSAPP`).
 
 ## Desarrollo local
 
